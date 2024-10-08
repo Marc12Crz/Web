@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Usuarios</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div th:insert="~{navbar :: body}"></div>
+<div class="container mt-4">
+    <h1>Listado de Usuarios</h1>
+    <a href="/usuarios/nuevo" class="btn btn-success mb-3">Crear Usuario</a>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.idUsuario}"></td>
+            <td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.correo}"></td>
+            <td th:text="${usuario.direccion}"></td>
+            <td th:text="${usuario.telefono}"></td>
+            <td>
+                <a th:href="@{/usuarios/edit/{id}(id=${usuario.idUsuario})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/usuarios/delete/{id}(id=${usuario.idUsuario})}" class="btn btn-danger">Eliminar</a>
+                <a th:href="@{/usuarios/reporte-pdf}" class="btn btn-danger">PDF</a>
+                <a th:href="@{/usuarios/reporte-excel}" class="btn btn-success">XLS</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

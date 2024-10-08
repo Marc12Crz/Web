@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Adopciones</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="~{navbar :: body}"></div>
+<div class="container mt-4">
+    <h1>Listado de Adopciones</h1>
+    <a href="/adopciones/nuevo" class="btn btn-success mb-3">Crear Adopción</a>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>ID Usuario</th>
+            <th>ID Mascota</th>
+            <th>Fecha de Solicitud</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="adopcion : ${adopciones}">
+            <td th:text="${adopcion.idAdopcion}"></td>
+            <td th:text="${adopcion.idUsuario}"></td>
+            <td th:text="${adopcion.idMascota}"></td>
+            <td th:text="${adopcion.fechaSolicitud}"></td>
+            <td th:text="${adopcion.estadoSolicitud}"></td>
+            <td>
+                <a th:href="@{/adopciones/edit/{id}(id=${adopcion.idAdopcion})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/adopciones/delete/{id}(id=${adopcion.idAdopcion})}" class="btn btn-danger">Eliminar</a>
+                <a th:href="@{/adopciones/reporte-pdf}" class="btn btn-danger">PDF</a>
+                <a th:href="@{/adopciones/reporte-excel}" class="btn btn-success">Excel</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

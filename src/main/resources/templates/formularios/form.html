@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${#strings.isEmpty(formulario.idFormulario) ? 'Agregar Formulario' : 'Editar Formulario'}"></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="~{navbar :: body}"></div>
+<div class="container mt-4">
+    <h1 th:text="${#strings.isEmpty(formulario.idFormulario) ? 'Agregar Formulario de Adopción' : 'Editar Formulario de Adopción'}"></h1>
+    <form th:action="@{/formularios}" th:object="${formulario}" method="post" class="form-inline">
+        <div class="form-group mb-2">
+            <label for="idAlbergue" class="mr-2">ID Albergue:</label>
+            <input type="text" id="idAlbergue" th:field="*{idAlbergue}" class="form-control mr-2" placeholder="ID del Albergue" required />
+        </div>
+        <div class="form-group mb-2">
+            <label for="pregunta" class="mr-2">Pregunta:</label>
+            <input type="text" id="pregunta" th:field="*{pregunta}" class="form-control mr-2" placeholder="Escribe la pregunta" required />
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Guardar</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Formularios de Adopción</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="~{navbar :: body}"></div>
+<div class="container mt-4">
+    <h1>Listado de Formularios de Adopción</h1>
+    <a href="/formularios/nuevo" class="btn btn-success mb-3">Crear Formulario</a>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>ID Albergue</th>
+            <th>Pregunta</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="formulario : ${formularios}">
+            <td th:text="${formulario.idFormulario}"></td>
+            <td th:text="${formulario.idAlbergue}"></td>
+            <td th:text="${formulario.pregunta}"></td>
+            <td>
+                <a th:href="@{/formularios/edit/{id}(id=${formulario.idFormulario})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/formularios/delete/{id}(id=${formulario.idFormulario})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este formulario?')">Eliminar</a>
+                <a th:href="@{/adopciones/reporte-pdf}" class="btn btn-danger">PDF</a>
+                <a th:href="@{/adopciones/reporte-excel}" class="btn btn-success">Excel</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

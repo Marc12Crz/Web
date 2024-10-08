@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${#strings.isEmpty(usuario.idUsuario) ? 'Agregar Usuario' : 'Editar Usuario'}"></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="~{navbar :: body}"></div>
+<div class="container mt-4">
+    <h1 th:text="${#strings.isEmpty(usuario.idUsuario) ? 'Agregar Usuario' : 'Editar Usuario'}"></h1>
+    <form th:action="@{/usuarios}" th:object="${usuario}" method="post" class="form-inline">
+        <div class="form-group mb-2">
+            <label for="nombre" class="mr-2">Nombre:</label>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control mr-2" placeholder="Nombre" required />
+        </div>
+        <div class="form-group mb-2">
+            <label for="correo" class="mr-2">Correo:</label>
+            <input type="email" id="correo" th:field="*{correo}" class="form-control mr-2" placeholder="Correo" required />
+        </div>
+        <div class="form-group mb-2">
+            <label for="contraseña" class="mr-2">Contraseña:</label>
+            <input type="password" id="contraseña" th:field="*{contraseña}" class="form-control mr-2" placeholder="Contraseña" required />
+        </div>
+        <div class="form-group mb-2">
+            <label for="direccion" class="mr-2">Dirección:</label>
+            <input type="text" id="direccion" th:field="*{direccion}" class="form-control mr-2" placeholder="Dirección" />
+        </div>
+        <div class="form-group mb-2">
+            <label for="telefono" class="mr-2">Teléfono:</label>
+            <input type="text" id="telefono" th:field="*{telefono}" class="form-control mr-2" placeholder="Teléfono" />
+        </div>
+        <div class="form-group mb-2">
+            <label for="tipoUsuario" class="mr-2">Tipo de Usuario:</label>
+            <select id="tipoUsuario" th:field="*{tipoUsuario}" class="form-control mr-2">
+                <option value="adoptante" th:text="'Adoptante'">Adoptante</option>
+                <option value="albergue" th:text="'Albergue'">Albergue</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Guardar</button>
+    </form>
+</div>
+</body>
+</html>
